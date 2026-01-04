@@ -1,0 +1,17 @@
+node_modules
+frontend/node_modules
+backend/venv
+.git
+.DS_Store
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.Python
+env
+venv
+ENV
+env.bak
+venv.bak
+frontend/dist
+backend/__pycache__

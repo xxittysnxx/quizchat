@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  quizchat:
+    build: .
+    container_name: quizchat
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    env_file:
+      - ./backend/.env
+    environment:
+      - PYTHONUNBUFFERED=1
+      - DATABASE_URL=sqlite:///./quizchat.db
+    volumes:
+      - ./backend:/app/backend
+
+  sqlite-web:
+    image: coleifer/sqlite-web
+    container_name: sqlite-web
+    restart: unless-stopped
+    volumes:
+      - ./backend:/data
+    ports:
+      - "8080:8080"
+    command: sqlite_web /data/quizchat.db --host 0.0.0.0 --port 8080 --no-browser --url-prefix /quizchat/db
+
+  tunnel:
+    image: cloudflare/cloudflared:latest
+    container_name: cloudflare-tunnel
+    restart: unless-stopped
+    command: tunnel --config /etc/cloudflared/config.yml run quizchat
+    volumes:
+      - ./cloudflared_config.yml:/etc/cloudflared/config.yml
+      - ${HOME}/.cloudflared/546ca386-dc03-48e0-af87-76dc1a292a11.json:/etc/cloudflared/creds.json
+    depends_on:
+      - quizchat
