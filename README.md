@@ -25,12 +25,13 @@ QuizChat is a full-stack web application that allows users to upload chat logs (
 
 ### 1. Configuration
 
-Create a `.env` file in `backend/` or use the root `.env` referenced in docker-compose.
-Copy `.env.example` to `backend/.env` and fill in your API key:
+Create a `.env` file or use the root `.env` referenced in docker-compose.
+Copy `.env.example` to `.env` and fill in your API key:
 
 ```bash
-cp .env.example backend/.env
-# Edit backend/.env and set GEMINI_API_KEY
+cp .env.example .env
+# Edit .env and set GEMINI_API_KEY
+# Edit .env and set SQLITE_PASSWORD
 ```
 
 ### 2. Run with Docker (Recommended)
@@ -42,7 +43,7 @@ docker compose up --build -d
 ```
 
 -   **App**: `http://localhost:8000` (or your configured custom domain)
--   **Database UI**: `http://localhost:8080/quizchat/db` (or `/quizchat/db` on your domain)
+-   **Database UI**: `http://localhost:8080/quizchat/db` (or `/quizchat/db` on your domain) requires password
 
 ### 3. Local Development
 

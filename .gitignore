@@ -2,6 +2,8 @@
 .DS_Store
 .AppleDouble
 .LSOverride
+.env
+.env.local
 
 # Editor
 .vscode/
@@ -14,15 +16,12 @@ backend/__pycache__/
 backend/*.py[cod]
 backend/*$py.class
 backend/venv/
-backend/.env
 backend/quizchat.db
 
 # Node / Frontend
 frontend/node_modules/
 frontend/dist/
 frontend/coverage/
-frontend/.env
-frontend/.env.local
 frontend/.DS_Store
 
 # Docker
