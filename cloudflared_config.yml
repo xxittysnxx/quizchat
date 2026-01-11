@@ -2,10 +2,10 @@ tunnel: 546ca386-dc03-48e0-af87-76dc1a292a11
 credentials-file: /etc/cloudflared/creds.json
 
 ingress:
-  - hostname: carlostsai.com
+  - hostname: app.carlostsai.com
     path: /quizchat/db*
     service: http://sqlite-web:8080
-  - hostname: carlostsai.com
+  - hostname: app.carlostsai.com
     path: /quizchat*
     service: http://quizchat:8000
   - service: http_status:404
