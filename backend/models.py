@@ -1,14 +1,18 @@
 from sqlalchemy import Column, Integer, String, ForeignKey, Text, JSON, DateTime
 from sqlalchemy.orm import relationship
 from datetime import datetime
+import pytz
 from database import Base
+
+def get_taiwan_time():
+    return datetime.now(pytz.timezone("Asia/Taipei"))
 
 class Quiz(Base):
     __tablename__ = "quizzes"
 
     id = Column(String, primary_key=True, index=True)
     filename = Column(String, index=True)
-    created_at = Column(DateTime, default=datetime.utcnow)
+    created_at = Column(DateTime, default=get_taiwan_time)
     
     questions = relationship("Question", back_populates="quiz")
     attempts = relationship("Attempt", back_populates="quiz")
@@ -32,6 +36,6 @@ class Attempt(Base):
     quiz_id = Column(String, ForeignKey("quizzes.id"))
     user_name = Column(String, index=True)
     score = Column(Integer)
-    timestamp = Column(DateTime, default=datetime.utcnow)
+    timestamp = Column(DateTime, default=get_taiwan_time)
 
     quiz = relationship("Quiz", back_populates="attempts")
