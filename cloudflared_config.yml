@@ -3,9 +3,12 @@ credentials-file: /etc/cloudflared/creds.json
 
 ingress:
   - hostname: app.carlostsai.com
+    path: /library*
+    service: http://host.docker.internal:8001
+  - hostname: app.carlostsai.com
     path: /quizchat/db*
-    service: http://sqlite-web:8080
+    service: http://host.docker.internal:8080
   - hostname: app.carlostsai.com
     path: /quizchat*
-    service: http://quizchat:8000
+    service: http://host.docker.internal:8000
   - service: http_status:404
